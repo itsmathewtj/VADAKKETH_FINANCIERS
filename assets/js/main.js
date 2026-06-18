@@ -201,4 +201,83 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Send enquiry forms to WhatsApp with submitted details
+   */
+  document.querySelectorAll('.enquiry-form').forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const name = formData.get('name') || '';
+      const phone = formData.get('phone') || '';
+      const email = formData.get('email') || '';
+      const service = formData.get('subject') || '';
+      const message = formData.get('message') || '';
+      const whatsappMessage = [
+        'Hello Vadakketh Financiers, I would like to send an enquiry.',
+        'Please review my details and guide me with the next steps, required documents and available loan options.',
+        'I am interested in getting clear information about eligibility, process and repayment details.',
+        '',
+        'Customer Details:',
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Email: ${email}`,
+        `Service: ${service}`,
+        `Message: ${message}`
+      ].join('\n');
+
+      window.location.href = `https://wa.me/919745438332?text=${encodeURIComponent(whatsappMessage)}`;
+    }, true);
+  });
+
+  /**
+   * Footer contact links
+   */
+  document.querySelectorAll('.footer-contact-list').forEach(contactList => {
+    contactList.innerHTML = `
+      <li>
+        <i class="bi bi-geo-alt"></i>
+        <a href="https://maps.app.goo.gl/9Tqo2V56pm9uhSDN7?g_st=ic" target="_blank" rel="noopener">Pulickalkavala, 14th Mile, Vazhoor, Kottayam, Kerala</a>
+      </li>
+      <li>
+        <i class="bi bi-telephone"></i>
+        <a href="tel:+919745438332">+91 97454 38332</a>
+      </li>
+      <li>
+        <i class="bi bi-whatsapp"></i>
+        <a href="https://wa.me/919745438332" target="_blank" rel="noopener">+91 97454 38332</a>
+      </li>
+      <li>
+        <i class="bi bi-envelope"></i>
+        <a href="mailto:vadakethfinancers@gmail.com">vadakethfinancers@gmail.com</a>
+      </li>
+    `;
+  });
+
+  /**
+   * Fixed quick contact buttons
+   */
+  const quickContact = document.createElement('nav');
+  quickContact.className = 'quick-contact';
+  quickContact.setAttribute('aria-label', 'Quick contact');
+  quickContact.innerHTML = `
+    <a href="tel:+919745438332" class="quick-contact-link quick-contact-phone" aria-label="Call Vadakketh Financiers">
+      <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+    </a>
+    <a href="https://wa.me/919745438332" class="quick-contact-link quick-contact-whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    </a>
+    <a href="mailto:vadakethfinancers@gmail.com" class="quick-contact-link quick-contact-email" aria-label="Send email">
+      <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+    </a>
+  `;
+  document.body.appendChild(quickContact);
+
 })();
