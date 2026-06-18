@@ -103,19 +103,19 @@ body {
 }
 
 .finance-hero-slide:nth-child(1) {
-  background-image: url("../img/1.png");
+  background-image: url("../img/21.png");
 }
 
 .finance-hero-slide:nth-child(2) {
-  background-image: url("../img/2.png");
+  background-image: url("../img/14.png");
 }
 
 .finance-hero-slide:nth-child(3) {
-  background-image: url("../img/3.png");
+  background-image: url("../img/18.png");
 }
 
 .finance-hero-slide:nth-child(4) {
-  background-image: url("../img/4.png");
+  background-image: url("../img/20.png");
 }
 
 .finance-hero > .container {
@@ -183,19 +183,35 @@ body {
 }
 
 .services-hero {
-  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/10.png");
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/15.png");
 }
 
 .corporate-hero {
-  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/11.png");
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/15.png");
 }
 
 .policy-hero {
-  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/12.png");
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/16.png");
 }
 
 .contact-hero {
-  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/13.png");
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/19.png");
+}
+
+.gold-loan-hero {
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/17.png");
+}
+
+.business-loan-hero {
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/18.png");
+}
+
+.personal-loan-hero {
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/20.png");
+}
+
+.calculator-hero {
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/16.png");
 }
 
 .page-hero h1 {
@@ -627,7 +643,7 @@ body {
 .gold-calculator-result-panel {
   background:
     linear-gradient(rgba(24, 37, 31, 0.94), rgba(24, 37, 31, 0.94)),
-    url("../img/working-1.jpg") center/cover no-repeat;
+    url("../img/16.png") center/cover no-repeat;
   color: #fff;
   padding: 34px 38px 28px;
 }
