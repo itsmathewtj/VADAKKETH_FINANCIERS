@@ -179,7 +179,7 @@ body {
 }
 
 .about-hero {
-  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/9.png");
+  background-image: linear-gradient(rgba(15, 31, 25, 0.85), rgba(15, 31, 25, 0.78)), url("../img/21.png");
 }
 
 .services-hero {
@@ -735,6 +735,78 @@ body {
 
 .value-card {
   padding: 26px;
+}
+
+.visual-service-showcase {
+  background: #f7f8f4;
+}
+
+.visual-showcase-heading {
+  margin: 0 auto 30px;
+  max-width: 780px;
+  text-align: center;
+}
+
+.visual-showcase-heading span {
+  color: #b7892b;
+  display: inline-block;
+  font: 800 13px var(--heading-font);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.visual-showcase-heading h2 {
+  color: #18251f;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.visual-showcase-heading p {
+  color: #526058;
+  font-size: 17px;
+  margin: 0;
+}
+
+.visual-showcase-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.visual-showcase-card {
+  background: #fff;
+  border: 1px solid rgba(24, 37, 31, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(24, 37, 31, 0.07);
+  height: 100%;
+  overflow: hidden;
+}
+
+.visual-showcase-card img {
+  aspect-ratio: 4 / 3;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.visual-showcase-card div {
+  padding: 20px;
+}
+
+.visual-showcase-card h3 {
+  color: #18251f;
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.visual-showcase-card p {
+  color: #526058;
+  font-size: 15px;
+  margin: 0;
 }
 
 .timeline-item {
@@ -1298,6 +1370,18 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
+  }
+
+  .visual-showcase-heading {
+    margin-bottom: 22px;
+  }
+
+  .visual-showcase-heading h2 {
+    font-size: 27px;
+  }
+
+  .visual-showcase-grid {
+    grid-template-columns: 1fr;
   }
 
   .gold-calculator-card {

@@ -262,6 +262,150 @@
   });
 
   /**
+   * Add contextual service images across the finance pages
+   */
+  function addVisualServiceShowcase() {
+    if (!document.body.classList.contains('index-page') && !document.body.classList.contains('page-body')) return;
+
+    const main = document.querySelector('main.main');
+    if (!main || main.querySelector('.visual-service-showcase')) return;
+
+    const pageName = window.location.pathname.split('/').pop() || 'index.html';
+    const defaultShowcase = {
+      eyebrow: 'Service Gallery',
+      title: 'A closer look at the finance support we provide',
+      copy: 'Images from gold loans, personal finance, business support and branch service moments help customers understand the services at a glance.',
+      images: [
+        ['assets/img/14.png', 'Gold loan assistance', 'Cash support against pledged gold ornaments.'],
+        ['assets/img/18.png', 'Business growth support', 'Working capital support for small traders.'],
+        ['assets/img/20.png', 'Personal loan guidance', 'Simple assistance for family financial needs.'],
+        ['assets/img/21.png', 'Family finance support', 'Practical help for household priorities.']
+      ]
+    };
+
+    const showcases = {
+      'index.html': defaultShowcase,
+      'about.html': {
+        eyebrow: 'Local Trust',
+        title: 'Built around real customer situations',
+        copy: 'The visual stories show the people, service moments and financial needs that shape Vadakketh Financiers every day.',
+        images: [
+          ['assets/img/21.png', 'Family confidence', 'Support for household goals and responsibilities.'],
+          ['assets/img/15.png', 'Community lending', 'Finance built around local customer needs.'],
+          ['assets/img/22.png', 'Urgent support', 'Respectful guidance during difficult moments.']
+        ]
+      },
+      'services.html': {
+        eyebrow: 'Loan Services',
+        title: 'Gold, business and personal finance in one place',
+        copy: 'Customers can quickly understand each service through visuals before choosing the right loan option.',
+        images: [
+          ['assets/img/14.png', 'Gold Loans', 'Quick support against gold ornaments.'],
+          ['assets/img/18.png', 'Business Loans', 'Growth and working-capital support.'],
+          ['assets/img/20.png', 'Personal Loans', 'Practical help for family needs.']
+        ]
+      },
+      'gold-loan.html': {
+        eyebrow: 'Gold Loan Visuals',
+        title: 'Gold valuation and pledge support made clearer',
+        copy: 'These images highlight gold ornaments, value checks and cash assistance so customers know what the service is about.',
+        images: [
+          ['assets/img/14.png', 'Gold to cash support', 'Loan assistance against pledged ornaments.'],
+          ['assets/img/16.png', 'Value assessment', 'Careful valuation before loan guidance.'],
+          ['assets/img/17.png', 'Gold market view', 'Gold value awareness for informed decisions.']
+        ]
+      },
+      'business-loan.html': {
+        eyebrow: 'Business Finance',
+        title: 'Support for working capital and growth',
+        copy: 'Business customers can see how the service connects to growth plans, cash flow and branch-level guidance.',
+        images: [
+          ['assets/img/18.png', 'Growth support', 'Capital support for expanding local trade.'],
+          ['assets/img/15.png', 'Community finance', 'Customer-focused finance for local needs.'],
+          ['assets/img/19.png', 'Branch transactions', 'Clear payment and cash handling support.']
+        ]
+      },
+      'personal-loan.html': {
+        eyebrow: 'Personal Finance',
+        title: 'Support for family and emergency needs',
+        copy: 'The images make personal loan use cases easier to understand for families planning urgent expenses.',
+        images: [
+          ['assets/img/20.png', 'Loan approval guidance', 'Simple support for planned personal needs.'],
+          ['assets/img/21.png', 'Family priorities', 'Finance support for household goals.'],
+          ['assets/img/22.png', 'Urgent expenses', 'Guidance when families need quick help.']
+        ]
+      },
+      'corporate.html': {
+        eyebrow: 'Modern Finance',
+        title: 'Traditional trust with modern service systems',
+        copy: 'The gallery connects customer relationships, branch service and future-ready finance operations.',
+        images: [
+          ['assets/img/15.png', 'Customer-centered finance', 'Services shaped around customer needs.'],
+          ['assets/img/19.png', 'Branch service', 'Cash and payment support with care.'],
+          ['assets/img/18.png', 'Growth direction', 'A practical vision for wider finance access.']
+        ]
+      },
+      'policy.html': {
+        eyebrow: 'Fair Practice',
+        title: 'Clear handling, valuation and customer care',
+        copy: 'Policy principles become easier to understand when customers can see the service situations behind them.',
+        images: [
+          ['assets/img/16.png', 'Clear valuation', 'Responsible assessment before lending.'],
+          ['assets/img/19.png', 'Careful transactions', 'Structured branch-level cash handling.'],
+          ['assets/img/15.png', 'Customer care', 'Finance support with accountability.']
+        ]
+      },
+      'contact.html': {
+        eyebrow: 'Before You Contact',
+        title: 'Choose the service you want to discuss',
+        copy: 'The branch can guide customers on gold, business or personal loan enquiries based on their requirement.',
+        images: [
+          ['assets/img/14.png', 'Gold loan enquiry', 'Ask about pledging gold ornaments.'],
+          ['assets/img/18.png', 'Business loan enquiry', 'Discuss working capital or growth support.'],
+          ['assets/img/20.png', 'Personal loan enquiry', 'Share family or urgent finance needs.']
+        ]
+      },
+      'emi-calculator.html': {
+        eyebrow: 'Gold Calculator',
+        title: 'Understand gold value before enquiry',
+        copy: 'Gold loan images beside the calculator help customers connect the estimate with valuation and pledge support.',
+        images: [
+          ['assets/img/16.png', 'Gold value estimate', 'Estimate loan eligibility from gold weight.'],
+          ['assets/img/17.png', 'Gold market context', 'Understand value before visiting the branch.'],
+          ['assets/img/14.png', 'Loan support', 'Convert pledged gold into practical finance.']
+        ]
+      }
+    };
+
+    const showcase = showcases[pageName] || defaultShowcase;
+    const section = document.createElement('section');
+    section.className = 'visual-service-showcase section';
+    section.innerHTML = `
+      <div class="container">
+        <div class="visual-showcase-heading" data-aos="fade-up">
+          <span>${showcase.eyebrow}</span>
+          <h2>${showcase.title}</h2>
+          <p>${showcase.copy}</p>
+        </div>
+        <div class="visual-showcase-grid">
+          ${showcase.images.map((image, index) => `
+            <article class="visual-showcase-card" data-aos="fade-up" data-aos-delay="${index * 100}">
+              <img src="${image[0]}" alt="${image[1]}" loading="lazy">
+              <div>
+                <h3>${image[1]}</h3>
+                <p>${image[2]}</p>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    main.appendChild(section);
+  }
+
+  addVisualServiceShowcase();
+
+  /**
    * Fixed quick contact buttons
    */
   const quickContact = document.createElement('nav');
