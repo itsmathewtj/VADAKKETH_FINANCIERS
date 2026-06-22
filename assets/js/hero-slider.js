@@ -52,7 +52,7 @@
     }
   ];
 
-  const intervalMs = 5000;
+  const intervalMs = 4300;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let currentIndex = 0;
   let timerId = null;

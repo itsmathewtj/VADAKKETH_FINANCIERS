@@ -266,22 +266,19 @@
    */
   document.querySelectorAll('.footer').forEach(footer => {
     const cookieHref = 'cookie-policy.html';
-    const footerLinkTargets = footer.querySelectorAll('.footer-links');
-    let linked = false;
+    const footerLinkTargets = Array.from(footer.querySelectorAll('.footer-links'));
+    const hasCookieLink = footerLinkTargets.some(linkList => linkList.querySelector(`a[href="${cookieHref}"]`));
 
-    footerLinkTargets.forEach(linkList => {
-      if (linkList.querySelector(`a[href="${cookieHref}"]`)) {
-        linked = true;
-        return;
-      }
+    if (hasCookieLink) return;
 
-      linkList.insertAdjacentHTML('beforeend', `
+    const preferredLinkTarget = footer.querySelector('.footer-links-secondary') || footerLinkTargets[footerLinkTargets.length - 1];
+
+    if (preferredLinkTarget) {
+      preferredLinkTarget.insertAdjacentHTML('beforeend', `
         <a href="${cookieHref}" class="footer-cookie-link">Cookie Policy</a>
       `);
-      linked = true;
-    });
-
-    if (linked) return;
+      return;
+    }
 
     const credits = footer.querySelector('.credits');
     if (credits && !credits.querySelector(`a[href="${cookieHref}"]`)) {
