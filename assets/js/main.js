@@ -262,6 +262,90 @@
   });
 
   /**
+   * Add Cookie Policy footer link across page templates
+   */
+  document.querySelectorAll('.footer').forEach(footer => {
+    const cookieHref = 'cookie-policy.html';
+    const footerLinkTargets = footer.querySelectorAll('.footer-links');
+    let linked = false;
+
+    footerLinkTargets.forEach(linkList => {
+      if (linkList.querySelector(`a[href="${cookieHref}"]`)) {
+        linked = true;
+        return;
+      }
+
+      linkList.insertAdjacentHTML('beforeend', `
+        <a href="${cookieHref}" class="footer-cookie-link">Cookie Policy</a>
+      `);
+      linked = true;
+    });
+
+    if (linked) return;
+
+    const credits = footer.querySelector('.credits');
+    if (credits && !credits.querySelector(`a[href="${cookieHref}"]`)) {
+      credits.insertAdjacentHTML('beforeend', ` | <a href="${cookieHref}" class="footer-cookie-link">Cookie Policy</a>`);
+    }
+  });
+
+  /**
+   * Cookie consent banner
+   */
+  const COOKIE_CONSENT_KEY = 'vadakketh_cookie_consent';
+
+  function setCookieConsent(choice) {
+    try {
+      localStorage.setItem(COOKIE_CONSENT_KEY, choice);
+    } catch (error) {
+      // Ignore storage errors and still dismiss the banner.
+    }
+  }
+
+  function getCookieConsent() {
+    try {
+      return localStorage.getItem(COOKIE_CONSENT_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function createCookieBanner() {
+    if (document.querySelector('.cookie-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.innerHTML = `
+      <div class="cookie-banner-inner">
+        <div class="cookie-banner-copy">
+          <h3>Cookie Policy</h3>
+          <p>We use essential cookies to keep the website working and optional cookies to understand visits and improve the experience. You can allow all cookies, reject all non-essential cookies, or accept essential cookies only.</p>
+        </div>
+        <div class="cookie-banner-actions">
+          <button type="button" class="cookie-banner-button secondary" data-cookie-choice="allow_all">Allow All</button>
+          <button type="button" class="cookie-banner-button ghost" data-cookie-choice="reject_all">Reject All</button>
+          <button type="button" class="cookie-banner-button primary" data-cookie-choice="essential_only">Accept Essential</button>
+        </div>
+      </div>
+    `;
+
+    banner.querySelectorAll('[data-cookie-choice]').forEach(button => {
+      button.addEventListener('click', () => {
+        setCookieConsent(button.getAttribute('data-cookie-choice'));
+        banner.remove();
+      });
+    });
+
+    document.body.appendChild(banner);
+  }
+
+  if (!getCookieConsent()) {
+    createCookieBanner();
+  }
+
+  /**
    * Add contextual service images across the finance pages
    */
   function addVisualServiceShowcase() {
